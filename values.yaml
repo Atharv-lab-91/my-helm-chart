@@ -8,7 +8,7 @@ configmap:
     BG_COLOR: '#12181b'
     FONT_COLOR: '#FFFFFF'
 image:
-  name: devopsjourney1/mywebapp:latest
+  name: devopsjourney1/mywebapp
   tag: latest
 service1:
   name: service-one
