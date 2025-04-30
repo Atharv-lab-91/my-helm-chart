@@ -1,0 +1,27 @@
+isProd: false
+
+namespace: staging
+
+configmap:
+  name: helmappconfigmap-staging
+  data:
+    CUSTOM_HEADER: "This is a Staging Environment!!!"
+    BG_COLOR: '#003366'
+    FONT_COLOR: '#FFFF00'
+
+image:
+  tag: staging
+
+service1:
+  name: service-one-staging
+
+service2:
+  name: service-two-staging
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 70
+
+ingress:
+  host: staging.app.example.com

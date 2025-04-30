@@ -1,0 +1,27 @@
+isProd: true
+
+namespace: prod
+
+configmap:
+  name: helmappconfigmap-prod
+  data:
+    CUSTOM_HEADER: "This app is running in Production!!!"
+    BG_COLOR: '#000000'
+    FONT_COLOR: '#FFFFFF'
+
+image:
+  tag: latest
+
+service1:
+  name: service-one
+
+service2:
+  name: service-two
+
+hpa:
+  minReplicas: 5
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+ingress:
+  host: app.example.com

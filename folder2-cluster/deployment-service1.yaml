@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.service1.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.service1.name }}
+spec:
+  replicas: {{ if .Values.isProd }}5{{ else }}1{{ end }}
+  selector:
+    matchLabels:
+      app: {{ .Values.service1.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.service1.name }}
+    spec:
+      containers:
+      - name: "{{ .Values.service1.name }}-container"
+        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        ports:
+        {{- range .Values.service1.ports }}
+          - containerPort: {{ . }}
+        {{- end }}
+        {{- if .Values.service1.useConfig }}
+        envFrom:
+        - configMapRef:
+            name: {{ .Values.configmap.name }}
+        {{- end }}
+        resources:
+          requests:
+            memory: "16Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"

@@ -1,0 +1,33 @@
+isProd: true
+appName: myhelmapp
+namespace: default
+configmap:
+  name: helmappconfigmapv1.1
+  data:
+    CUSTOM_HEADER: "This app was deployed with helm!!!"
+    BG_COLOR: '#12181b'
+    FONT_COLOR: '#FFFFFF'
+image:
+  name: devopsjourney1/mywebapp:latest
+  tag: latest
+service1:
+  name: service-one
+  useConfig: true
+  ports:
+    - 80
+    - 443
+    - 8080
+service2:
+  name: service-two
+  useConfig: false
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
+ingress:
+  enabled: true
+  host: app.example.com
+  path: /
