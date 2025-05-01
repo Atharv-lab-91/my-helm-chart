@@ -20,7 +20,7 @@ service2:
 
 hpa:
   minReplicas: 2
-  maxReplicas: 4
+  maxReplicas: 3
   targetCPUUtilizationPercentage: 70
 
 ingress:

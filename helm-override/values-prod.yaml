@@ -19,8 +19,8 @@ service2:
   name: service-two
 
 hpa:
-  minReplicas: 5
-  maxReplicas: 10
+  minReplicas: 3
+  maxReplicas: 5
   targetCPUUtilizationPercentage: 80
 
 ingress:
