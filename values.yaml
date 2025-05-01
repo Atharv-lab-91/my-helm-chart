@@ -13,7 +13,7 @@ image:
   pullPolicy: IfNotPresent
 service1:
   name: service-one
-  useConfig: false
+  useConfig: true
 service2:
   name: service-two
   useConfig: false
