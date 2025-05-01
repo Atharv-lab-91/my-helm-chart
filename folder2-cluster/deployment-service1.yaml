@@ -23,11 +23,6 @@ spec:
             - containerPort: 80
             - containerPort: 443
             - containerPort: 8080
-          {{- if .Values.service1.useConfig }}
-          envFrom:
-            - configMapRef:
-                name: {{ .Values.configmap.name }}
-          {{- end }}
           resources:
             requests:
               memory: "16Mi"
