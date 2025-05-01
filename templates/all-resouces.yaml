@@ -39,7 +39,9 @@ metadata:
   labels:
     app: {{ .Values.service1.name }}
 spec:
+  {{- if not .Values.hpa.enabled }}
   replicas: {{ .Values.isProd | ternary 5 1 }}
+  {{- end }}
   selector:
     matchLabels:
       app: {{ .Values.service1.name }}
