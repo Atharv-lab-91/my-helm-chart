@@ -30,4 +30,4 @@ hpa:
   targetCPUUtilizationPercentage: 80
 
 ingress:
-  host: app.example.com
+  host: prod.app.example.com
