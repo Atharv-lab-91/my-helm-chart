@@ -10,15 +10,21 @@ configmap:
     FONT_COLOR: '#FFFFFF'
 
 image:
-  tag: latest
+  name: nginx
+  tag: latest         
+  pullPolicy: IfNotPresent
+  useConfig: true
 
 service1:
   name: service-one
+  useConfig: true
 
 service2:
   name: service-two
+  useConfig: true
 
 hpa:
+  enabled: true
   minReplicas: 3
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80

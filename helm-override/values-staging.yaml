@@ -10,15 +10,21 @@ configmap:
     FONT_COLOR: '#FFFF00'
 
 image:
-  tag: staging
+  name: nginx
+  tag: latest         
+  pullPolicy: IfNotPresent
+  useConfig: true
 
 service1:
   name: service-one-staging
+  useConfig: true
 
 service2:
   name: service-two-staging
+  useConfig: false
 
 hpa:
+  enabled: true
   minReplicas: 2
   maxReplicas: 3
   targetCPUUtilizationPercentage: 70
