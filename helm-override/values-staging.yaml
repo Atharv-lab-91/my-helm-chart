@@ -17,7 +17,7 @@ image:
 
 service1:
   name: service-one-staging
-  useConfig: true
+  useConfig: false
 
 service2:
   name: service-two-staging
