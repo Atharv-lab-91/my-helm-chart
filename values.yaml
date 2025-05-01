@@ -10,6 +10,7 @@ configmap:
 image:
   name: nginx
   tag: latest
+  pullPolicy: IfNotPresent
 service1:
   name: service-one
   useConfig: true
