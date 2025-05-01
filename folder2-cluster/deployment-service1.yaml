@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ .Values.service1.name }}
 spec:
-  replicas: {{ if .Values.isProd }}5{{ else }}1{{ end }}
+  replicas: {{ .Values.isProd | ternary 5 1 }}
   selector:
     matchLabels:
       app: {{ .Values.service1.name }}
@@ -16,22 +16,22 @@ spec:
         app: {{ .Values.service1.name }}
     spec:
       containers:
-      - name: "{{ .Values.service1.name }}-container"
-        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy}}
-        ports:
-        {{- range .Values.service1.ports }}
-          - containerPort: {{ . }}
-        {{- end }}
-        {{- if .Values.service1.useConfig }}
-        envFrom:
-        - configMapRef:
-            name: {{ .Values.configmap.name }}
-        {{- end }}
-        resources:
-          requests:
-            memory: "16Mi"
-            cpu: "50m"
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+        - name: "{{ .Values.service1.name }}-container"
+          image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 8080
+          {{- if .Values.service1.useConfig }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configmap.name }}
+          {{- end }}
+          resources:
+            requests:
+              memory: "16Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"

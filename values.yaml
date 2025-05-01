@@ -14,10 +14,6 @@ image:
 service1:
   name: service-one
   useConfig: true
-  ports:
-    - 80
-    - 443
-    - 8080
 service2:
   name: service-two
   useConfig: false
