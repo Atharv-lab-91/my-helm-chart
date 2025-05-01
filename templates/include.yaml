@@ -1,4 +1,11 @@
 {{ tpl (.Files.Get "folder1-common/configmap.yaml") . }}
+
+
 {{ tpl (.Files.Get "folder1-common/service.yaml") . }}
+
+
 {{ tpl (.Files.Get "folder2-cluster/deployment-service1.yaml") . }}
+
+
+
 {{ tpl (.Files.Get "folder2-cluster/deployment-service2.yaml") . }}
